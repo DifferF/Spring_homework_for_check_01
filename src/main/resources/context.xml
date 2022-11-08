@@ -1,0 +1,50 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+    <!--  По умолчанию все закомментированно для работы через java - конфигурацию  -->
+
+    <!-- Создаем бин автомобиля Ауди-->
+    <!--  Мы должны дать айди нашему бину и указать класс, который мы будем использовать для этого бина-->
+    <!--  <bean id = "audi" class="spring.impl.car.Audi"/>    -->
+     <bean id = "knight" class="task_02.Knight"/>
+    <!--Эту запись открываем для тестирования audi2-->
+    <!--<bean id = "audi2" class="spring.impl.car.Audi"/>   -->
+
+
+    <!--Создаем бины для систем, которые будут затем взяты из контейнера-->
+      <bean id="stand" class="task_02.quest.StandQ"/>
+      <bean id="runway" class="task_02.quest.RunAwayQ"/> <!-- -->
+      <bean id="jump" class="task_02.quest.JumpQ"/> <!-- -->
+
+    <!-- <bean id="sony" class="spring.impl.audio.Sony"/>  -->
+
+
+    <!--  <bean id="alpine" class="spring.impl.audio.Alpine"/> -->
+    <!--   <bean id="garmin" class="spring.impl.navigation.Garmin"/>  -->
+
+    <!--Это пример записи зависимости прямо в контейнере-->
+    <bean id = "knight_2" class="task_02.Knight">
+        <property name = "setQuest" ref = "runway"/>
+    </bean>
+
+
+       <!--  <bean id = "audi2" class="spring.impl.car.Audi">
+             <property name = "audioSystem" ref = "sony"/>
+
+        </bean>
+       -->
+
+     <!-- Внедрение зависимостей с помощью конструктора
+         <bean id="audi2" class="spring.impl.car.Audi" scope="prototype">
+         <constructor-arg ref="garmin"/>
+         <constructor-arg ref="sony"/>
+     </bean> -->
+
+    <!-- Внедрение зависимостей с помощью конструктора -->
+    <bean id = "knight_3" class="task_02.Knight" scope="prototype">
+        <constructor-arg ref="jump"/>
+    </bean>
+
+</beans>
